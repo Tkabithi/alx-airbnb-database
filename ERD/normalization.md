@@ -1,4 +1,5 @@
 # Normalization for Airbnb Database
+![alt text](<AirBnb erd 2.PNG>)
 
 ## First Normal Form (1NF)
 - All tables contain atomic values (no multi-valued or repeating attributes).
