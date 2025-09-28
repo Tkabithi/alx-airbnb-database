@@ -1,4 +1,4 @@
--- Initial complex query (before optimization)
+--- Initial complex query (before optimization)
 EXPLAIN ANALYZE
 SELECT 
     b.booking_id,
@@ -15,8 +15,9 @@ SELECT
 FROM booking b
 JOIN users u ON b.users_id = u.users_id
 JOIN property p ON b.property_id = p.property_id
-JOIN payment pay ON b.booking_id = pay.booking_id;
-
+JOIN payment pay ON b.booking_id = pay.booking_id
+WHERE u.email = 'alice@example.com'
+  AND b.status = 'confirmed';
 
 -- Optimized version
 EXPLAIN ANALYZE
