@@ -21,3 +21,25 @@ EXPLAIN SELECT *
 FROM booking b
 JOIN users u ON b.users_id = u.users_id
 WHERE u.email = 'alice@example.com';
+
+-- 1. Measure performance BEFORE indexes
+EXPLAIN ANALYZE 
+SELECT * 
+FROM booking b
+JOIN users u ON b.users_id = u.users_id
+WHERE u.email = 'alice@example.com';
+
+
+-- 2. Create indexes
+CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX idx_booking_users_id ON booking(users_id);
+CREATE INDEX idx_booking_property_id ON booking(property_id);
+CREATE INDEX idx_property_host_id ON property(host_id);
+
+
+-- 3. Measure performance AFTER indexes
+EXPLAIN ANALYZE 
+SELECT * 
+FROM booking b
+JOIN users u ON b.users_id = u.users_id
+WHERE u.email = 'alice@example.com';
